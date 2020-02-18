@@ -64,51 +64,51 @@ router.get('/:userRef', auth, (req, res) => {
   };
 });
 
-router.put('/:userId', auth, (req, res) => {
-  const { userId } = req.params;
-  console.log(`TCL: userId`, userId);
-  const userChanges = req.body;
-  console.log(`TCL: userChanges`, userChanges);
+// router.put('/:userId', auth, (req, res) => {
+//   const { userId } = req.params;
+//   console.log(`TCL: userId`, userId);
+//   const userChanges = req.body;
+//   console.log(`TCL: userChanges\n`, userChanges);
 
-  if (!userChanges.username && !userChanges.password) {
-    res.status(400).json({ message: 'Required data missing' });
-  } else {
-    Users.readUserById(userId)
-      .then(user => {
-        console.log(`TCL: user\n`, user);
-        if (user) {
-        Users.updateUser(userId, userChanges)
-          .then(updatedUser => {
-            console.log(`TCL: updatedUser\n`, updatedUser);
-            res.json(updatedUser);
-          });
-        } else {
-          res.status(404).json({ message: 'Could not get user with given id' });
-        };
-      })
-      .catch(err => {
-        res.status(500).json({ message: 'Failed to update user' });
-      });
-  };
-});
+//   if (!userChanges.username && !userChanges.password) {
+//     res.status(400).json({ message: 'Required data missing' });
+//   } else {
+//     Users.readUserById(userId)
+//       .then(user => {
+//         console.log(`TCL: user\n`, user);
+//         if (user) {
+//         Users.updateUser(userId, userChanges)
+//           .then(updatedUser => {
+//             console.log(`TCL: updatedUser\n`, updatedUser);
+//             res.json(updatedUser);
+//           });
+//         } else {
+//           res.status(404).json({ message: 'Could not get user with given id' });
+//         };
+//       })
+//       .catch(err => {
+//         res.status(500).json({ message: 'Failed to update user' });
+//       });
+//   };
+// });
 
-router.delete('/:userId', auth, (req, res) => {
-  const { userId } = req.params;
+// router.delete('/:userId', auth, (req, res) => {
+//   const { userId } = req.params;
 
-  Users.readUserById(userId)
-    .then(user => {
-      if (user) {
-        Users.deleteUser(userId)
-          .then(deleted => {
-            if (deleted) {
-              res.status(200).json({ removedUser: parseInt(userId, 10) });
-            };
-          });
-      };
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Failed to delete user' });
-    });
-});
+//   Users.readUserById(userId)
+//     .then(user => {
+//       if (user) {
+//         Users.deleteUser(userId)
+//           .then(deleted => {
+//             if (deleted) {
+//               res.status(200).json({ removedUser: parseInt(userId, 10) });
+//             };
+//           });
+//       };
+//     })
+//     .catch(err => {
+//       res.status(500).json({ message: 'Failed to delete user' });
+//     });
+// });
 
 module.exports = router;
