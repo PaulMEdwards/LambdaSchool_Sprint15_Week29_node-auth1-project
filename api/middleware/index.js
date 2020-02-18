@@ -4,6 +4,7 @@ const cors = require('cors');
 const logger = require('./logger');
 const auth = require('./auth');
 const session = require('express-session');
+const knexSessionStore = require('connect-session-knex')(session);
 
 const sessionConfig = {
   name: 'session',
@@ -14,7 +15,14 @@ const sessionConfig = {
     httpOnly: true
   },
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new knexSessionStore({
+    knex: require('../../data/dbConfig.js'),
+    tablename: 'sessions',
+    sidfieldname: 'sid',
+    createtable: true,
+    clearInterval: 1000 * 60 * 60
+  })
 };
 
 module.exports = server => {
