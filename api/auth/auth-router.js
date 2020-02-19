@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
       .catch(err => {
         res.status(500).json(err);
       });
-  }
+  };
 });
 
 router.post('/login', (req, res) => {
@@ -42,12 +42,12 @@ router.post('/login', (req, res) => {
           res.status(200).json({ message: `Welcome ${user.username}!`, userData: user });
         } else {
           res.status(401).json({ message: `Invalid Credentials` });
-        }
+        };
       })
       .catch(err => {
         res.status(500).json(err);
       });
-  }
+  };
 });
 
 router.get('/logout', (req, res) => {
