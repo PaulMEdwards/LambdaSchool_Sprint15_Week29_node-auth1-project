@@ -660,13 +660,13 @@
 							},
 							{
 								"key": "username",
-								"value": "test",
+								"value": "TestUser",
 								"type": "text",
 								"disabled": true
 							},
 							{
 								"key": "password",
-								"value": "test",
+								"value": "T3$tP4$$w0rd!",
 								"type": "text",
 								"disabled": true
 							}
@@ -1456,7 +1456,7 @@
 					"script": {
 						"id": "195c2eb1-cc8e-4ea4-9b87-eeca2f9dedb4",
 						"exec": [
-							"var res = pm.response.json();",
+							"// var res = pm.response.json();",
 							"",
 							"pm.test('Success', () => {",
 							"    pm.response.to.have.status(204);",
@@ -1507,10 +1507,10 @@
 	],
 	"variable": [
 		{
-			"id": "1b3205d2-53e6-4cc1-b1bd-2f9442a666f8",
+			"id": "52971e9e-8048-420c-8675-f064b7b4fef9",
 			"key": "UserID",
-			"value": "0",
-			"type": "string"
+			"value": 2,
+			"type": "number"
 		}
 	],
 	"protocolProfileBehavior": {}
