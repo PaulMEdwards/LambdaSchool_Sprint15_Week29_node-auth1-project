@@ -31,7 +31,10 @@ function auth(req, res, next) {
       .first()
       .then(user => {
         console.log(`TCL: auth -> user output\n`, user);
-        b = bcrypt.compareSync(userData.password, user.password);
+        let b = false;
+        if (!userData.cookieAuth) {
+          b = bcrypt.compareSync(userData.password, user.password);
+        };
         console.log(`TCL: auth -> bcrypt output =`, b);
         if (user && (userData.cookieAuth || b)) {
           console.log(`Authorized!`);
