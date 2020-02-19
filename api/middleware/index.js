@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const logger = require('./logger');
-const auth = require('./auth');
+// const auth = require('./auth');
 const session = require('express-session');
 const knexSessionStore = require('connect-session-knex')(session);
 
